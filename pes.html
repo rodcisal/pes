@@ -1,0 +1,43 @@
+<head>
+  <title>pes</title>
+</head>
+
+<body>
+  <div class="cover"></div>
+  {{> add_match}}
+</body>
+
+
+<template name="add_match">
+  <div class="players">
+    <div class="player_a">
+      <input class="player_box" type="text" name="player_a" id="player_a" placeholder="Jugador 1">
+    </div>
+    <span> VS </span>
+    <div class="player_b">
+      <input class="player_box" type="text" name="player_b" id="player_b" placeholder="Jugador 2">
+    </div>
+    <button name="add_match" id="add_match">RESERVAR</button>
+  </div>
+
+  <div class="games">
+    <ul>
+    {{#each games}}
+      <li>
+        <div class="one">
+          {{player_a}}
+        </div>
+       <span class="versus">VS</span>
+         <div class="two"> 
+           {{player_b}} 
+
+           <span class="livestamp" data-livestamp="{{date}}"></span>
+
+        </div>
+      </li>
+    {{/each}}
+    </ul>
+
+
+  </div>
+</template>

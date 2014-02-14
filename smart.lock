@@ -1,0 +1,21 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "moment": {},
+      "livestamp": {}
+    },
+    "packages": {
+      "moment": {
+        "git": "https://github.com/acreeger/meteor-moment.git",
+        "tag": "v2.5.1",
+        "commit": "8c9bc5d3fc96705057737cb9743d555417f6e551"
+      },
+      "livestamp": {
+        "git": "https://github.com/colllin/meteor-livestamp.git",
+        "tag": "v1.1.2.1",
+        "commit": "070821be066925e5177daf1d3398c759c45b15b4"
+      }
+    }
+  }
+}
