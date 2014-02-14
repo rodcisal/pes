@@ -29,10 +29,6 @@ if (Meteor.isServer) {
 
   Match = new Meteor.Collection("match");
 
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
-
 
   Meteor.methods({
     addMatch: function(player_a, player_b){
