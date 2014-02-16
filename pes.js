@@ -8,6 +8,10 @@ if (Meteor.isClient) {
 
   });
 
+  Accounts.ui.config({
+    passwordSignupFields: 'USERNAME_AND_OPTIONAL_EMAIL'
+  });
+
   Template.add_match.games = function(){
     var m = Match.find({}, {sort: {date: -1}, limit:10});
     return m;
@@ -19,11 +23,12 @@ if (Meteor.isClient) {
     $('.login-close-text').text('Cerrar');
     $('#login-username-or-email-label').text('Nombre de usuario o email');
     $('#login-password-label').text('Password');
+    $('#login-password-again-label').text('Password (de nuevo)');
     $('#signup-link').text('Registrarse');
     $('#forgot-password-link').text('Idiot, olvide el password');
     $('#login-buttons-forgot-password').text('Olvidé password');
     $('#back-to-login-link').text('Volver');
-    $('#login-username-label').text('Entrar');
+    $('#login-username-label').text('Nombre de Usuario');
     $('#login-buttons-open-change-password').text('Cambiar password');
     $('#login-buttons-logout').text('Salir');
     $('#reset-password-new-password-label').text('Password');
@@ -52,7 +57,7 @@ if (Meteor.isClient) {
       event.preventDefault();
       var player_a = $("#player_a").val();
       var player_b = $("#player_b").val();
-      var owner = Meteor.user().emails[0].address;
+      var owner = Meteor.user().username;
       console.log(owner);
       $('#player_a, #player_b').val('');
       Meteor.call("addMatch", player_a, player_b, owner);
