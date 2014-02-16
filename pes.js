@@ -5,6 +5,11 @@ if (Meteor.isClient) {
     moment.lang('es');
     var m = Meteor.user();
     console.log(m);
+    var myself = Meteor.user().username ? Meteor.user().username : Meteor.user().services.github.username;
+    Session.set('myself', myself);
+    var s = Session.get('myself');
+    console.log(s);
+
 
   });
 
@@ -15,6 +20,10 @@ if (Meteor.isClient) {
   Template.add_match.games = function(){
     var m = Match.find({}, {sort: {date: -1}, limit:10});
     return m;
+  }
+
+  Template.add_match.myself = function () {
+    return Session.get('myself');
   }
 
 
@@ -57,10 +66,19 @@ if (Meteor.isClient) {
       event.preventDefault();
       var player_a = $("#player_a").val();
       var player_b = $("#player_b").val();
-      var owner = Meteor.user().username;
-      console.log(owner);
+      var owner = Meteor.user().username ? Meteor.user().username : Meteor.user().services.github.username;
+      var ownerPic = Meteor.user().profile.avatar_url;
+      var pic = Meteor.user().profile.avatar_url;
+      console.log(ownerPic);
       $('#player_a, #player_b').val('');
-      Meteor.call("addMatch", player_a, player_b, owner);
+      Meteor.call("addMatch", player_a, player_b, owner, ownerPic);
+      $('#player_b').focus();
+    },
+    "click #myself":function(event){
+      var s = Session.get('myself');
+      $('#player_a').val(s);
+      event.preventDefault();
+      $('#player_a').focus();
     }
   });
 }
@@ -71,13 +89,14 @@ if (Meteor.isServer) {
 
 
   Meteor.methods({
-    addMatch: function(player_a, player_b, owner){
+    addMatch: function(player_a, player_b, owner, ownerPic){
       console.log("adding match");
       Match.insert({
         "player_a":player_a, 
         "player_b":player_b,
         "date": new Date(),
-        "owner": owner
+        "owner": owner,
+        "ownerPic": ownerPic
       });
       console.log(Date());
     }

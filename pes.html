@@ -38,6 +38,7 @@
   <form name="add_match_form" id="add_match_form">
     <div class="player_a">
       <input class="player_box" type="text" name="player_a" id="player_a" placeholder="Jugador 1" required oninvalid="this.setCustomValidity('Aweonao')" oninput="setCustomValidity('')">
+      {{#if myself}}<div class="myself">o <a href="#" id="myself">{{myself}}</a></div>{{/if}}
     </div>
     <span> VS </span>
     <div class="player_b">
@@ -52,6 +53,7 @@
       <ul>
       {{#each games}}
         <li>
+
           <div class="one">
             {{player_a}}
           </div>
@@ -61,7 +63,9 @@
 
              <span class="livestamp" data-livestamp="{{date}}"></span>
 
-             <div class="owner">por {{owner}}</div>
+             <div class="owner">por 
+                {{owner}}
+              </div>
 
 
           </div>
