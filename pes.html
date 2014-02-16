@@ -3,41 +3,71 @@
 </head>
 
 <body>
-  <div class="cover"></div>
-  {{> add_match}}
+
+<div class="login_box">
+  {{> login}}
+</div>
+
+<div class="wtf">
+  {{#unless currentUser}}
+    <h1>WTF are you doing here?</h1>
+  {{/unless}}
+</div>
+
+
+<div class="main_wrapper">
+  {{#if currentUser}}
+    {{> add_match}}
+  {{/if}}
+</div>
 </body>
+
+<template name="login">
+  <div class="login">
+    <div class="login_inner">
+      {{loginButtons}}
+    </div>
+  </div>
+</template>
 
 
 <template name="add_match">
   <div class="players">
+  <form name="add_match_form" id="add_match_form">
     <div class="player_a">
-      <input class="player_box" type="text" name="player_a" id="player_a" placeholder="Jugador 1">
+      <input class="player_box" type="text" name="player_a" id="player_a" placeholder="Jugador 1" required oninvalid="this.setCustomValidity('Aweonao')" oninput="setCustomValidity('')">
     </div>
     <span> VS </span>
     <div class="player_b">
-      <input class="player_box" type="text" name="player_b" id="player_b" placeholder="Jugador 2">
+      <input class="player_box" type="text" name="player_b" id="player_b" placeholder="Jugador 2" required oninvalid="this.setCustomValidity('Aweonao')" oninput="setCustomValidity('')" >
     </div>
-    <button name="add_match" id="add_match">RESERVAR</button>
+    <input type="submit" value="Reservar" name="add_match" id="add_match">
+  </form>
   </div>
 
-  <div class="games">
-    <ul>
-    {{#each games}}
-      <li>
-        <div class="one">
-          {{player_a}}
-        </div>
-       <span class="versus">VS</span>
-         <div class="two"> 
-           {{player_b}} 
+  <div class="main">
+    <div class="games">
+      <ul>
+      {{#each games}}
+        <li>
+          <div class="one">
+            {{player_a}}
+          </div>
+         <span class="versus">VS</span>
+           <div class="two"> 
+             {{player_b}} 
 
-           <span class="livestamp" data-livestamp="{{date}}"></span>
+             <span class="livestamp" data-livestamp="{{date}}"></span>
 
-        </div>
-      </li>
-    {{/each}}
-    </ul>
+             <div class="owner">por {{owner}}</div>
 
 
+          </div>
+        </li>
+      {{/each}}
+      </ul>
+    </div>
   </div>
+
+  
 </template>

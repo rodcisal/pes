@@ -12,6 +12,10 @@
 
 }
 
+body 
+  margin-top: -40px
+  padding-top:40px;
+
 body, #add_match
   font-family:'helveticaneuecyrthin'
 
@@ -20,13 +24,27 @@ body, #add_match
   height: 100%;
   margin-top: 40px
   margin-left: 145px
+  padding-top: 40px
 }
+
+.login_box
+  overflow:hidden
+  height:55px
 
 
 .player_a, .player_b {
   display: inline-block;
+  vertical-align: top;
 }
 
+
+.player_a label, .player_b label 
+  display: block
+
+
+
+.wtf h1 
+  text-align:center
 
 .one, .two {
   display:inline-block;
@@ -73,7 +91,7 @@ body, #add_match
 
 
 .games
-  width: 960px
+  width: 645px
   padding-top: 40px
   margin-bottom: 100px
   margin-left: 145px
@@ -106,6 +124,9 @@ body, #add_match
   font-size: 11px
   color: #666
   margin:0px 10px
+  padding-top: 26px
+  display: inline-block
+
 
 .cover
   height: 270px
@@ -113,3 +134,25 @@ body, #add_match
   background: url(pes.png) no-repeat;
   background-size: cover
   margin-left: 145px
+
+.login 
+  text-align: right
+  width: 100%
+  margin: 0 auto
+  margin-bottom: 15px
+  height:30px
+  color: #ffffff
+  background: #000000
+  padding: 10px 0px 10px 0px
+  position: fixed
+
+.login_inner
+  padding-right: 400px
+
+
+.owner 
+  display:inline-block
+  vertical-align: top
+  font-size: 12px
+  padding-top: 6px
+

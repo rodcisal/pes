@@ -11,3 +11,7 @@ stylus
 jquery
 moment
 livestamp
+accounts-base
+accounts-password
+accounts-ui
+email
