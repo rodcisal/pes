@@ -26,9 +26,7 @@ if (Meteor.isClient) {
     return Session.get('myself');
   }
 
-  Template.add_match.playersList = function() {
-    var l = Meteor.users()
-  }
+
 
 
   Template.login.rendered = function() {
