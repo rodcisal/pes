@@ -26,6 +26,10 @@ if (Meteor.isClient) {
     return Session.get('myself');
   }
 
+  Template.add_match.playersList = function() {
+    var l = Meteor.users()
+  }
+
 
   Template.login.rendered = function() {
     $('#login-sign-in-link').text('Entrar');
@@ -66,20 +70,19 @@ if (Meteor.isClient) {
       event.preventDefault();
       var player_a = $("#player_a").val();
       var player_b = $("#player_b").val();
-      var owner = Meteor.user().username ? Meteor.user().username : Meteor.user().services.github.username;
-      var ownerPic = Meteor.user().profile.avatar_url;
-      var pic = Meteor.user().profile.avatar_url;
-      console.log(ownerPic);
+      var owner = Meteor.user().username;
       $('#player_a, #player_b').val('');
-      Meteor.call("addMatch", player_a, player_b, owner, ownerPic);
-      $('#player_b').focus();
+      Meteor.call("addMatch", player_a, player_b, owner);
+      $('#player_a').focus();
+      return false;
     },
     "click #myself":function(event){
       var s = Session.get('myself');
       $('#player_a').val(s);
       event.preventDefault();
-      $('#player_a').focus();
+      $('#player_b').focus();
     }
+
   });
 }
 
@@ -96,7 +99,6 @@ if (Meteor.isServer) {
         "player_b":player_b,
         "date": new Date(),
         "owner": owner,
-        "ownerPic": ownerPic
       });
       console.log(Date());
     }
