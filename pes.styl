@@ -86,6 +86,7 @@ body, #add_match
   border: 1px solid #ddd
   margin:5px 0 5px 0
 
+
 .games ul li:nth-child(even)
   border:none
 
@@ -100,9 +101,15 @@ body, #add_match
 
 .players_list
   width: 300px
-  padding-top: 40px
   display:inline-block
   vertical-align:top
+  h1 
+    text-align:right
+  ul li
+    text-align: right
+  ul
+    list-style-type:none
+
 
 .livestamp
   color: #999
@@ -167,3 +174,11 @@ body, #add_match
     border-radius: 50px
     width: 40px
     height: 40px
+
+.terminar
+  display: inline-block
+  float:right
+  padding-right:20px
+
+.terminar.no_terminado
+  color:red

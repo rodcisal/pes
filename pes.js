@@ -5,7 +5,7 @@ if (Meteor.isClient) {
     moment.lang('es');
     var m = Meteor.user();
     console.log(m);
-    var myself = Meteor.user().username ? Meteor.user().username : Meteor.user().services.github.username;
+    var myself = Meteor.user().username;
     Session.set('myself', myself);
     var s = Session.get('myself');
     console.log(s);
@@ -24,6 +24,12 @@ if (Meteor.isClient) {
 
   Template.add_match.myself = function () {
     return Session.get('myself');
+  }
+
+  Template.add_match.playerList = function () {
+    var m = Meteor.users.find({});
+    console.log(m);
+    return m;
   }
 
 
@@ -79,6 +85,14 @@ if (Meteor.isClient) {
       $('#player_a').val(s);
       event.preventDefault();
       $('#player_b').focus();
+    },
+    "click .terminar_match":function (e){
+      var player_id = this._id;
+      Meteor.call("endMatch", player_id);
+      console.log(player_id);
+      var m = Match.findOne({_id:player_id});
+      console.log(m.terminado);
+      e.preventDefault();
     }
 
   });
@@ -99,6 +113,10 @@ if (Meteor.isServer) {
         "owner": owner,
       });
       console.log(Date());
+    },
+    endMatch: function(player_id){
+      console.log('updating match');
+      Match.update(player_id, {$set:{terminado:true} });
     }
   });
 }

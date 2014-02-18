@@ -52,7 +52,7 @@
     <div class="games">
       <ul>
       {{#each games}}
-        <li>
+        <li class="{{terminado}}">
 
           <div class="one">
             {{player_a}}
@@ -66,15 +66,24 @@
              <div class="owner">por 
                 {{owner}}
               </div>
-
-
           </div>
+          {{#if terminado}}
+           <div class="terminar no_terminado">
+             Terminado
+           </div>
+          {{/if}}
+          {{#unless terminado}}
+          <div class="terminar">
+           <a href="#" class="terminar_match">Terminar</a>
+          </div>
+          {{/unless}}
         </li>
       {{/each}}
       </ul>
     </div>
 
     <div class="players_list">
+      <h1>Jugadores</h1>
       <ul>
         {{#each playerList}}
           <li>{{username}}</li>
